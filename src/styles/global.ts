@@ -16,12 +16,12 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font-family: 'Roboto Slab', serif;
-    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 500
+    font-weight: 700
   }
 
   button {

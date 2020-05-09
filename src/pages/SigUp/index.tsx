@@ -3,13 +3,14 @@ import { FiUser, FiMail, FiLock, FiArrowLeft } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
-import { Container, Content, Card } from './styles';
+import { Container, Content, Card, CardTitle } from './styles';
 import getValidationErrors from '../../utils/getValidationErrors';
 import CreditCard from '../../components/CreditCard';
 import 'react-credit-cards/es/styles-compiled.css';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import CardIcon from '../../assets/card.svg';
 
 const SigUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -41,17 +42,15 @@ const SigUp: React.FC = () => {
   const [cvc, setCvc] = useState('');
   const [focus, setFocused] = useState<any>(undefined);
 
-  function handleFocus(e: any) {
-    setFocused(e.target.name);
-    console.log(e.target.name);
-  }
-
-  console.log(focus);
-
   return (
     <>
       <Container>
         <Card>
+          <p>Alterar forma de pagamento</p>
+          <CardTitle>
+            <img src={CardIcon} />
+            <h2>Adicione um novo cartão de crédito</h2>
+          </CardTitle>
           <CreditCard
             name={name}
             number={number}
@@ -65,31 +64,27 @@ const SigUp: React.FC = () => {
             <h1>Faça seu Cadastro</h1>
             <Input
               name="name"
-              icon={FiUser}
               placeholder="Nome"
               onChange={e => setName(e.target.value)}
-              onFocus={() => setFocused('name')}
+              onClick={() => setFocused('name')}
             />
             <Input
               name="number"
-              icon={FiUser}
               placeholder="Número do Cartão"
               onChange={e => setNumber(e.target.value)}
-              onFocus={() => setFocused('number')}
+              onClick={() => setFocused('number')}
             />
             <Input
               name="expiry"
-              icon={FiUser}
               placeholder="Data de expiração"
               onChange={e => setExpiry(e.target.value)}
-              onFocus={() => setFocused('expiry')}
+              onClick={() => setFocused('expiry')}
             />
             <Input
               name="cvc"
-              icon={FiUser}
               placeholder="Código do cartão"
               onChange={e => setCvc(e.target.value)}
-              onFocus={() => setFocused('cvc')}
+              onClick={() => setFocused('cvc')}
             />
             <Button type="submit">Cadastrar</Button>
           </Form>

@@ -7,52 +7,64 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: #232129;
-  border-radius: 10px;
-  padding: 16px;
   width: 100%;
-
-  color: #666360;
-  border: 2px solid #232129;
+  border-bottom: 1px solid #C9C9C9;
+  color: #C9C9C9;
 
   & + div {
-    margin-top: 8px;
+    margin-top: 67px;
+  }
+
+  span{
+    opacity: 0;
+    width: 100%;
+    color: #3C3C3C;
+    display: flex;
+    font-size: 13px;
+    margin: 0 0 5px 0;
+    transition: opacity 0.2s;
   }
 
   ${props =>
     props.isErrorEd &&
     css`
-      border: 2px solid #c53030;
       color: #c53030;
     `}
 
   ${props =>
     props.isFocused &&
     css`
-      color: #ff9000;
-      border: 2px solid #ff9000;
+      color: #3c3c3c;
+
+      span {
+        opacity: 1;
+      }
     `}
 
   ${props =>
     props.isFilled &&
     css`
       color: #ff9000;
+
+      span {
+        opacity: 1;
+      }
     `}
 
   input {
     background: transparent;
     flex: 1;
-    color: #f4ede8;
     border: 0;
+    width: 100%;
+    padding-bottom: 5px;
+    font-size: 17px;
 
     &::placeholder {
-      color: #666360;
+      color: #C9C9C9;
     }
   }
 
-  svg {
-    margin-right: 16px;
-  }
+
 `;
 
 export const Error = styled.div`
