@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
+import Input from '../../components/Input';
 
 export const Container = styled.div`
   display: flex;
@@ -9,16 +10,17 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  place-content: center;
   width: 100%;
   max-width: 672px;
-  padding: 50px 64px 50px 200px;
+  padding: 50px 64px 50px 168px;
 
   form {
-    margin: 80px 0;
-    width: 340px;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
     text-align: center;
+    justify-content: space-between;
 
     h1 {
       margin-bottom: 24px;

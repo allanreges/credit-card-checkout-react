@@ -6,13 +6,10 @@ import React, {
   useCallback,
 } from 'react';
 import { useField } from '@unform/core';
-import InputMask from 'react-input-mask';
 import { Container, Error } from './styles';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends InputHTMLAttributes<HTMLSelectElement> {
   name: string;
-  mask: string | Array<string | RegExp>;
-  maskPlaceholder?: string | undefined;
   width?: string;
 }
 
@@ -20,14 +17,13 @@ const Input: React.FC<InputProps> = ({
   name,
   placeholder,
   onChange,
-  mask,
   width = '100%',
   ...rest
 }) => {
   const { fieldName, defaultValue, error, registerField } = useField(name);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLSelectElement>(null);
 
   useEffect(() => {
     registerField({
@@ -39,6 +35,7 @@ const Input: React.FC<InputProps> = ({
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
+    console.log('entrou no blut');
 
     setIsFilled(!!inputRef.current?.value);
   }, []);
@@ -55,19 +52,20 @@ const Input: React.FC<InputProps> = ({
       width={width}
     >
       <span>{placeholder}</span>
-      <InputMask
-        mask={mask}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        onChange={onChange}
+      <select
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        onFocus={handleInputBlur}
+        ref={inputRef}
         {...rest}
       >
-        <input
-          placeholder={placeholder}
-          defaultValue={defaultValue}
-          ref={inputRef}
-        />
-      </InputMask>
+        <option value="0" selected disabled>
+          Selecione a quantidade de parcelas
+        </option>
+        <option value="1">Valor 1</option>
+        <option value="2">Valor 2</option>
+        <option value="3">Valor 3</option>
+      </select>
       {error && <Error>{error}</Error>}
     </Container>
   );

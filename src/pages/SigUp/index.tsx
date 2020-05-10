@@ -9,6 +9,7 @@ import CreditCard from '../../components/CreditCard';
 import 'react-credit-cards/es/styles-compiled.css';
 
 import Input from '../../components/Input';
+import Select from '../../components/Select';
 import Button from '../../components/Button';
 import CardIcon from '../../assets/card.svg';
 
@@ -19,12 +20,13 @@ const SigUp: React.FC = () => {
     try {
       formRef.current?.setErrors({});
       const schema = Yup.object().shape({
-        name: Yup.string().required('Nome Obrigatório'),
-        email: Yup.string()
-          .required('Email Obrigatório')
-          .email('Digite um e-mail válido'),
-        password: Yup.string().min(6, 'No mínimo 6 digitos'),
+        name: Yup.string().length(10, 'Por favor Insira o nome Completo'),
+        number: Yup.string().required('Insira um número válido'),
+        expiry: Yup.string().required('Insira uma data válida'),
+        cvc: Yup.string().required('Insira um código válido'),
+        payment: Yup.number().moreThan(0, 'Selecione a quantidade de parcelas'),
       });
+      console.log(data);
 
       await schema.validate(data, {
         abortEarly: false,
@@ -61,38 +63,43 @@ const SigUp: React.FC = () => {
         </Card>
         <Content>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça seu Cadastro</h1>
             <Input
-              name="name"
-              placeholder="Nome"
-              onChange={e => setName(e.target.value)}
-              onClick={() => setFocused('name')}
-            />
-            <Input
+              mask="9999 9999 9999 9999"
+              maskPlaceholder=""
               name="number"
               placeholder="Número do Cartão"
               onChange={e => setNumber(e.target.value)}
               onClick={() => setFocused('number')}
             />
             <Input
-              name="expiry"
-              placeholder="Data de expiração"
-              onChange={e => setExpiry(e.target.value)}
-              onClick={() => setFocused('expiry')}
+              mask=""
+              maskPlaceholder=""
+              name="name"
+              placeholder="Nome (igual ao cartão)"
+              onChange={e => setName(e.target.value)}
+              onClick={() => setFocused('name')}
             />
             <Input
+              mask="99/99"
+              maskPlaceholder=""
+              name="expiry"
+              placeholder="Validade"
+              onChange={e => setExpiry(e.target.value)}
+              onClick={() => setFocused('expiry')}
+              width="50%"
+            />
+            <Input
+              mask="999"
+              maskPlaceholder=""
               name="cvc"
-              placeholder="Código do cartão"
+              width="45%"
+              placeholder="CVV"
               onChange={e => setCvc(e.target.value)}
               onClick={() => setFocused('cvc')}
             />
+            <Select name="payment" placeholder="Número de parcelas" />
             <Button type="submit">Cadastrar</Button>
           </Form>
-
-          <a href="#">
-            <FiArrowLeft />
-            Voltar para Login
-          </a>
         </Content>
       </Container>
     </>
