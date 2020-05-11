@@ -1,6 +1,12 @@
 .rccs__card {
-  width: 364px !important;
-  height: 233px !important;
+
+  width: 295px !important;
+  height: 172px !important;
+
+  @media screen and (min-width: 720px) {
+    width: 364px !important;
+    height: 233px !important;
+  };
   border-radius: 10px !important;
 }
 

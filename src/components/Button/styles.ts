@@ -12,12 +12,16 @@ export const Container = styled.div`
     padding: 0 16px;
     color: #312e38;
     font-weight: 500;
-    width: 246px;
+    width: 100%;
     font-size: 17px;
     color: #fff;
     transition: background-color 0.2s;
     display: block;
     margin: 21px 0 0 auto;
+
+    @media (min-width: 720px) {
+      width: 246px;
+    }
 
     &:hover {
       background: ${shade(0.2, '#DE4B4B')};

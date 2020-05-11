@@ -1,9 +1,16 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { FiUser, FiMail, FiLock, FiArrowLeft } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
-import { Container, Content, Card, CardTitle } from './styles';
+import {
+  Container,
+  Content,
+  Card,
+  CardTitle,
+  Stepper,
+  Step1,
+  Step2,
+} from './styles';
 import getValidationErrors from '../../utils/getValidationErrors';
 import CreditCard from '../../components/CreditCard';
 import 'react-credit-cards/es/styles-compiled.css';
@@ -20,7 +27,7 @@ const SigUp: React.FC = () => {
     try {
       formRef.current?.setErrors({});
       const schema = Yup.object().shape({
-        name: Yup.string().length(10, 'Por favor Insira o nome Completo'),
+        name: Yup.string().required('Por favor Insira o nome Completo'),
         number: Yup.string().required('Insira um número válido'),
         expiry: Yup.string().required('Insira uma data válida'),
         cvc: Yup.string().required('Insira um código válido'),
@@ -62,6 +69,23 @@ const SigUp: React.FC = () => {
           />
         </Card>
         <Content>
+          <Stepper>
+            <Step1>
+              <p>Carrinho</p>
+            </Step1>
+            <Step2>
+              <p>
+                <span>2</span>
+                Pagamento
+              </p>
+            </Step2>
+            <Step2>
+              <p>
+                <span>3</span>
+                Confirmação
+              </p>
+            </Step2>
+          </Stepper>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input
               mask="9999 9999 9999 9999"
