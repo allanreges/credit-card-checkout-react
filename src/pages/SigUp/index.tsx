@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
@@ -23,6 +23,14 @@ import CardIcon from '../../assets/card.svg';
 const SigUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  useEffect(() => {
+    if (window.innerWidth < 720) {
+      setCardTitle('mobile');
+    } else {
+      setCardTitle('desktop');
+    }
+  }, []);
+
   const handleSubmit = useCallback(async (data: object) => {
     try {
       formRef.current?.setErrors({});
@@ -33,7 +41,6 @@ const SigUp: React.FC = () => {
         cvc: Yup.string().required('Insira um código válido'),
         payment: Yup.number().moreThan(0, 'Selecione a quantidade de parcelas'),
       });
-      console.log(data);
 
       await schema.validate(data, {
         abortEarly: false,
@@ -46,6 +53,7 @@ const SigUp: React.FC = () => {
   }, []);
 
   const [name, setName] = useState('');
+  const [cardTitle, setCardTitle] = useState('');
   const [number, setNumber] = useState('');
   const [expiry, setExpiry] = useState('');
   const [cvc, setCvc] = useState('');
@@ -55,7 +63,14 @@ const SigUp: React.FC = () => {
     <>
       <Container>
         <Card>
-          <p>Alterar forma de pagamento</p>
+          {cardTitle === 'desktop' ? (
+            <p>Alterar forma de pagamento</p>
+          ) : (
+              <p>
+                <span>Etapa 2 </span> de 3
+              </p>
+            )}
+
           <CardTitle>
             <img src={CardIcon} />
             <h2>Adicione um novo cartão de crédito</h2>

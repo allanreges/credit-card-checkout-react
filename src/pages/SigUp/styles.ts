@@ -31,7 +31,7 @@ export const Content = styled.div`
     flex-wrap: wrap;
     text-align: center;
     justify-content: space-between;
-    margin: 80px 0 0 0;
+    margin: 90px 0 55px 0;
 
     h1 {
       margin-bottom: 24px;
@@ -89,6 +89,11 @@ export const Card = styled.div`
     align-items: center;
     display: flex;
 
+    span {
+      font-weight: 800;
+      margin-right: 5px;
+    }
+
     @media (min-width: 720px) {
       margin-left: 20px;
     }
@@ -98,10 +103,10 @@ export const Card = styled.div`
       position: absolute;
       border-left: 3px solid #fff;
       border-top: 3px solid #fff;
-      width: 15px;
-      height: 15px;
-      left: -35px;
-      top: 38px;
+      width: 13px;
+      height: 13px;
+      left: -130px;
+      top: 0px;
       transform: rotate(-45deg);
       z-index: 2;
     }
