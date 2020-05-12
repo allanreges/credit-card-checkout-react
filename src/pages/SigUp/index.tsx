@@ -23,6 +23,13 @@ import CardIcon from '../../assets/card.svg';
 const SigUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const [name, setName] = useState('');
+  const [cardTitle, setCardTitle] = useState('');
+  const [number, setNumber] = useState('');
+  const [expiry, setExpiry] = useState('');
+  const [cvc, setCvc] = useState('');
+  const [focus, setFocused] = useState<any>(undefined);
+
   useEffect(() => {
     if (window.innerWidth < 720) {
       setCardTitle('mobile');
@@ -51,13 +58,6 @@ const SigUp: React.FC = () => {
       formRef.current?.setErrors(errors);
     }
   }, []);
-
-  const [name, setName] = useState('');
-  const [cardTitle, setCardTitle] = useState('');
-  const [number, setNumber] = useState('');
-  const [expiry, setExpiry] = useState('');
-  const [cvc, setCvc] = useState('');
-  const [focus, setFocused] = useState<any>(undefined);
 
   return (
     <>
