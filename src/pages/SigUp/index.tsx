@@ -14,6 +14,7 @@ import {
 import getValidationErrors from '../../utils/getValidationErrors';
 import CreditCard from '../../components/CreditCard';
 import 'react-credit-cards/es/styles-compiled.css';
+import api from '../../services/api';
 
 import Input from '../../components/Input';
 import Select from '../../components/Select';
@@ -57,6 +58,7 @@ const SigUp: React.FC = () => {
 
       formRef.current?.setErrors(errors);
     }
+    const response = await api.post('/pagar', data);
   }, []);
 
   return (

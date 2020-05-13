@@ -35,7 +35,6 @@ const Input: React.FC<InputProps> = ({
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
-    console.log('entrou no blut');
 
     setIsFilled(!!inputRef.current?.value);
   }, []);
