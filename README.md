@@ -5,4 +5,4 @@ para rodar o projeto basta clonar o projeto e utilziar os comandos:
 
 <b>yarn</b>
 
-<b>yarn start</>
+<b>yarn start</b>
